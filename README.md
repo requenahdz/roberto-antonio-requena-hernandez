@@ -16,7 +16,7 @@ API RESTful para la gestión de productos de una tienda de comercio electrónico
 ```bash 
 npm install
 ```
-3. Configurar las variables de entorno .env:
+3. Crea y configura las variables de entorno en el archivo .env:
 ```bash
 PORT=
 JWT_SECRET=
@@ -123,10 +123,10 @@ Body:
 ```
 
 Response:
-```json
+```json 
 {
-    message : "Producto creado exitosamente",
-    data:{
+    "message" : "Producto creado exitosamente",
+    "data" : {
         "_id": "string",
         "name": "string",
         "description": "string",
@@ -162,8 +162,8 @@ Body:
 Response:
 ```json
 {
-    message : "Producto actualizado exitosamente",
-    data:{
+    "message" : "Producto actualizado exitosamente",
+    "data" : {
         "_id": "string",
         "name": "string",
         "description": "string",
