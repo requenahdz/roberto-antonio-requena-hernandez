@@ -1,5 +1,3 @@
-# roberto-requena
-
 # E-commerce Backend
 
 ## Descripción
@@ -18,9 +16,15 @@ API RESTful para la gestión de productos de una tienda de comercio electrónico
 ```bash 
 npm install
 ```
-3. Configurar las variables de entorno:
+3. Configurar las variables de entorno .env:
 ```bash
-some
+PORT=
+JWT_SECRET=
+MONGODB_URI=
+USER_DEFAULT_NAME=
+USER_DEFAULT_PASSWORD=
+USER_DEFAULT_PHONE=
+USER_DEFAULT_IMG=
 ```
 4. Ejecutar el script migraciones de las tablas de bases de datos:
 ```bash 
@@ -33,33 +37,34 @@ npm run start
 
 # Endpoints
 
-## Autenticación
-POST /auth/login: Iniciar sesión y obtener un token JWT.
-Request Body:
-```bash
+# POST /auth/login
+Iniciar sesión y obtener un token JWT.
+
+Body:
+```json
 {
   "phone": "string",
   "password": "string"
 }
  ```
 Response:
-```bash
+```json
 {
   "token": "string"
 }
  ```
 
- ## Productos
-GET /products Obtener todos los productos.
+## GET /products
+Obtener todos los productos.
 
 Headers
-```bash
+```json
 {
   "Authorization": "Bearer <token>"
 }
  ```
 Response:
-```bash
+```json
 [
   {
     "_id": "string",
@@ -73,3 +78,118 @@ Response:
   }
 ]
  ```
+
+## GET /products:id
+Obtener un producto especifico.
+
+Headers
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+ ```
+Response:
+```json
+  {
+    "_id": "string",
+    "name": "string",
+    "description": "string",
+    "height": "number",
+    "length": "number",
+    "width": "number",
+    "createdAt": "string",
+    "updatedAt": "string"
+  }
+ ```
+
+## POST /products
+Crear un nuevo producto.
+
+Headers
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+Body:
+```json
+{
+  "name": "string",
+  "description": "string",
+  "height": "number",
+  "length": "number",
+  "width": "number"
+}
+```
+
+Response:
+```json
+{
+    message : "Producto creado exitosamente",
+    data:{
+        "_id": "string",
+        "name": "string",
+        "description": "string",
+        "height": "number",
+        "length": "number",
+        "width": "number",
+        "createdAt": "string",
+        "updatedAt": "string"
+        }
+}
+```
+
+## PUT /products/:id
+Actualizar un producto existente.
+
+Headers
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+Body:
+```json
+{
+  "name": "string",
+  "description": "string",
+  "height": "number",
+  "length": "number",
+  "width": "number"
+}
+```
+
+Response:
+```json
+{
+    message : "Producto actualizado exitosamente",
+    data:{
+        "_id": "string",
+        "name": "string",
+        "description": "string",
+        "height": "number",
+        "length": "number",
+        "width": "number",
+        "createdAt": "string",
+        "updatedAt": "string"
+        }
+}
+```
+
+## DELETE /products/:id
+ Eliminar un producto.
+
+Headers
+```json
+{
+  "Authorization": "Bearer <token>"
+}
+```
+
+Response:
+```json
+{
+  "message": "Producto eliminado"
+}
+```
+
